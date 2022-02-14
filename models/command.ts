@@ -4,7 +4,7 @@ import Option from "./option";
 export enum CommandType {
   git = "git",
   npm = "npm",
-  commit = "git commit",
+  commit = "commit"
 }
 
 export default class Command {
