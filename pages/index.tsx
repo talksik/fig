@@ -1,14 +1,24 @@
 import Head from "next/head";
-import { useEffect, useRef } from "react";
+import { SyntheticEvent, useEffect, useRef, useState } from "react";
 
 import { FaTh } from "react-icons/fa";
 
 export default function Fig() {
   const inputRef = useRef<HTMLInputElement>();
+  const [inputVal, setInputVal] = useState<string>("");
 
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
+
+  const onChangeInput = (e: SyntheticEvent) => {
+    const target = e.target as HTMLInputElement;
+    setInputVal(target.value);
+
+    // logic for parsing and changing autocomplete options
+
+    // logic for showing correct command icon
+  };
 
   return (
     <>
@@ -42,7 +52,7 @@ export default function Fig() {
 
       <main className="container mx-auto flex flex-col justify-center h-screen">
         <div
-          className="flex flex-row my-auto mx-auto w-[25rem] 
+          className="flex flex-row my-auto mx-auto w-[50rem] 
         items-center justify-start space-x-5 border bg-slate-50 p-3 px-5 rounded-full"
         >
           <img
@@ -51,10 +61,12 @@ export default function Fig() {
             height={30}
             width={30}
             src="https://api.statvoo.com/favicon/?url=https://fig.io/"
+            onChange={onChangeInput}
           />
 
           <input
-            className="placeholder:text-slate-300 text-slate-600 text-md font-bold outline-none  bg-slate-50"
+            autoFocus
+            className="flex-1 placeholder:text-slate-300 text-slate-600 text-md font-bold outline-none  bg-slate-50"
             placeholder="power to do"
           />
         </div>
